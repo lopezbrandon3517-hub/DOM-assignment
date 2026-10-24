@@ -1,17 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Multiplication Table</title>
 </head>
+
 <body>
 
-    <p id="table">multiplication table</p>
+    <h1>Multiplication Table</h1>
 
-    <button onclick="timestable()">please enter your number</button>
-    
+    <p>Enter a number:</p>
 
-    <script src="javascript.js"></script>
+    <input type="number" id="number">     //to create a box where they casn type the number 
+
+    <button onclick="makeTable()">Show Table</button>    //makes the button
+
+    <div id="result"></div> //to make the table where the multiplication will be put imn
+
+    <script>
+
+        function makeTable() { //make tbale function to make the multipication tbale
+
+            let number = document.getElementById("number").value; // find the element with id. . balue to get whjatever is typed into .value
+
+            let result = ""; //to later store multiplicstion table
+
+            for (let i = 1; i <= 10; i++) { //for loop to run ten times
+
+                result += number + " x " + i + " = " + (number * i) + "<br>";// continoues loop till i hits 10 because our multiplication table will do until 10 no more. the  the br just so it makes a new line and not put everytbnhing on same line.
+
+            }
+
+            document.getElementById("result").innerHTML = result;
+
+        }
+
+    </script>
+<!-- exercise 1 done
+
+
+
+
+
+
+//start of exercise 2 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Colors</title>
+</head>
+
+<body>
+
+    <h1>Change Button Colors</h1>
+
+    <p>Choose a color:</p>
+
+    <select id="colors" onchange="changeColors()"> //function to chnage color instead ofg onclick
+
+        <option value="">Choose Color</option> 
+        <option value="red">Red</option> //changing the color options. red
+        <option value="green">Green</option> //for greeb
+        <option value="blue">Blue</option> //for blue
+        <option value="random">Random</option>// randomise
+        <option value="reset">Reset</option> //reset
+
+    </select>
+
+    <br><br>
+
+    <div id="buttons"></div>
+
+    <script>
+
+        let originalColors = []; // my array
+
+        function randomColor() { //random color generator
+
+            let red = Math.floor(Math.random() * 256); // to generate random numeber use math random then floor to turn it to whole numebr same for below
+            let green = Math.floor(Math.random() * 256);// random numebr 0 to 256
+            let blue = Math.floor(Math.random() * 256);
+
+            return "rgb(" + red + "," + green + "," + blue + ")"; //return ranbdiom color and use it as button
+
+        }
+
+        function makeButtons() { // function to amke the random 10 buttons
+
+            for (let i = 0; i < 10; i++) { //loop to make the 10 buttons
+
+                let button = document.createElement("button"); //creates the new html element
+
+                button.innerHTML = "Button " + (i + 1); //names the button
+
+                let color = randomColor();
+
+                button.style.backgroundColor = color; //just to change color of button. dont need it but added
+
+                originalColors[i] = color; //stores the color in the array
+
+                document.getElementById("buttons").appendChild(button); // adds the html element inside the parent. used append child()
+
+            }
+
+        }
+
+        function changeColors() { //fucntion to change color
+
+            let color = document.getElementById("colors").value;  //to get the dropsdowns
+
+            let buttons = document.getElementsByTagName("button"); // finds all the buttons
+
+            for (let i = 0; i < buttons.length; i++) { //for loop for the buttons. 10 tiumes because we got 10 buttons
+
+                if (color == "red") {
+
+                    buttons[i].style.backgroundColor = "red"; //self explantory
+
+                }
+
+                else if (color == "green") {
+
+                    buttons[i].style.backgroundColor = "green";
+
+                }
+
+                else if (color == "blue") {
+
+                    buttons[i].style.backgroundColor = "blue";
+
+                }
+
+                else if (color == "random") {
+
+                    buttons[i].style.backgroundColor = randomColor();//this is to make a random color for each button
+
+                }
+
+                else if (color == "reset") {
+
+                    buttons[i].style.backgroundColor = originalColors[i];
+
+                }
+
+            }
+
+        }
+
+        makeButtons(); //call the funtion
+
+    </script>
+
 </body>
+</html>
+
+
+
+</body>
+</html>
